@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Doctor extends Employee{
 
-    protected Doctor(HashMap schedule) {
+    public Doctor(HashMap schedule) {
         super(schedule);
     }
 }

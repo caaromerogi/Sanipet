@@ -2,7 +2,7 @@ package com.sofka.Patient;
 
 public class Dog extends Patient{
 
-    protected Dog(String name, String breed, Owner owner, boolean isVaccinated, String date) {
+    public Dog(String name, String breed, Owner owner, boolean isVaccinated, String date) {
         super(name, breed, owner, isVaccinated, date);
     }
 

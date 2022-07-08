@@ -18,9 +18,6 @@ public class Sanipet {
         //Schedule 1
         HashMap<String,String> sch1 = new HashMap<String, String>();
 
-        //Medicine dolex = new Medicine("Dolex", presentacion.PILLS, "Veterinarian", "g", "100mg", 15000)
-
-
         sch1.put("Monday", "08:00-19:00");
         sch1.put("Tuesday", "08:00-19:00");
         sch1.put("Wednesday", "08:00-19:00");
