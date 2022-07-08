@@ -1,4 +1,4 @@
-package com.sofka;
+package com.sofka.Patient;
 
 public class Owner {
     private String dni;

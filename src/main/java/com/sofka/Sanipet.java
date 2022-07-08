@@ -1,6 +1,11 @@
 package com.sofka;
 
 
+import com.sofka.Employee.Doctor;
+import com.sofka.Employee.Stylist;
+import com.sofka.Patient.Dog;
+import com.sofka.Patient.Owner;
+
 import java.util.HashMap;
 
 public class Sanipet {
@@ -12,6 +17,7 @@ public class Sanipet {
 
         //Schedule 1
         HashMap<String,String> sch1 = new HashMap<String, String>();
+
 
         sch1.put("Monday", "08:00-19:00");
         sch1.put("Tuesday", "08:00-19:00");

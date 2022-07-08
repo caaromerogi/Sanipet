@@ -1,6 +1,4 @@
-package com.sofka;
-
-import java.util.Date;
+package com.sofka.Patient;
 
 public class Dog extends Patient{
 

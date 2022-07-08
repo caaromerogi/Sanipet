@@ -1,4 +1,4 @@
-package com.sofka;
+package com.sofka.Patient;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,15 @@ public abstract class Patient {
     protected String date;
     protected Date deparasitization;
 
+    public String getClinicHistoryNumber() {
+        return clinicHistoryNumber;
+    }
+
+    public String getName() {
+        return name;
+
+    }
+
     protected Patient(String name, String breed, Owner owner, boolean isVaccinated, String date) {
         this.name = name;
         this.breed = breed;
@@ -26,6 +35,8 @@ public abstract class Patient {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+
+
 
 
     }
