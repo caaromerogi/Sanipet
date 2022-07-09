@@ -9,19 +9,13 @@ public class Dog extends Patient{
     @Override
     public String toString() {
         return "Dog{" +
-                "clinicHistoryNumber='" + clinicHistoryNumber + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", breed='" + breed + '\'' +
                 ", owner=" + owner +
                 ", isVaccinated=" + isVaccinated +
                 ", date='" + date + '\'' +
-                ", deparasitization=" + deparasitization +
+                ", deparasitizationDate=" + deparasitizationDate +
                 '}';
-    }
-
-    @Override
-    public void generateNumber() {
-
-        this.clinicHistoryNumber = clinicHistoryNumber;
     }
 }

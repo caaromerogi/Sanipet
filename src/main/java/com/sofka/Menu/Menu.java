@@ -7,6 +7,9 @@ import com.sofka.Patient.Owner;
 import java.util.Scanner;
 
 public class Menu {
+
+     private static Scanner sc = new Scanner(System.in);
+
     public static void menu() {
         //Menú
         System.out.println("Sanipet - Veterinary care center");
@@ -24,10 +27,25 @@ public class Menu {
         System.out.println("5. Exit");
     }
 
+    public static int validationAge(){
+
+        System.out.println("-------------------\nDatos del propietario ");
+        System.out.println("Introduzca la edad: ");
+        int ownerAge = sc.nextInt();
+        if (ownerAge < 18) {
+            System.out.println("No puede ingresar un propietario menor de 18 años");
+            Menu.validationAge();
+        }
+        return ownerAge;
+    }
+
     public static void menu1() {
-        Scanner sc = new Scanner(System.in);
+
+        int ownerAge = Menu.validationAge();
+
         System.out.println("-------------------");
-        System.out.println("Datos del propietario \nIntroduzca DNI:");
+        System.out.println("Introduzca DNI:");
+        sc.nextLine();
         String dni = sc.nextLine();
 
         System.out.println("Introduzca nombre: ");
@@ -39,15 +57,10 @@ public class Menu {
         System.out.println("Introduzca el celular: ");
         String cellphone = sc.nextLine();
 
-        System.out.println("Introduzca la edad: ");
-        int ownerAge = sc.nextInt();
 
-        if (ownerAge < 18) {
-            System.out.println("No puede ingresar un propietario menor de 18 años");
 
-        } else {
             Owner own = new Owner(dni, ownerName, surname, cellphone, ownerAge);
-            sc.nextLine();
+
             System.out.println("Ingrese los datos del paciente \n Introduzca nombre:");
             String patientName = sc.nextLine();
             System.out.println("Introduzca la raza: ");
@@ -56,20 +69,33 @@ public class Menu {
             boolean vaccinated = sc.nextBoolean();
             System.out.println("Ingrese la fecha de registro: dd/mm/yyyy");
             String registerDate = sc.nextLine();
+            sc.nextLine();
             System.out.println("Perro - Gato");
             String animalType = sc.nextLine();
             if (animalType.equalsIgnoreCase("Perro")) {
                 //Without ClinicNumber
                 Dog newDog = new Dog(patientName, breed, own, vaccinated, registerDate);
                 System.out.println(newDog.getName() + " fue inscrito correctamente");
+                System.out.println("");
+                System.out.println("-");
+                System.out.println("-");
+                System.out.println("");
+                Menu.menu();
             }else{
                 Cat newCat = new Cat(patientName, breed, own, vaccinated, registerDate);
-
+                System.out.println(newCat.getName() + " fue inscrito correctamente");
+                System.out.println("");
+                System.out.println("-");
+                System.out.println("-");
+                System.out.println("");
+                Menu.menu();
             }
 
         }
     }
-}
+
+
+
 /*
 try{
 boolean vaccinated = sc.nextBoolean();

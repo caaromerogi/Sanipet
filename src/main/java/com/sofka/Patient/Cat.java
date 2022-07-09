@@ -7,8 +7,5 @@ public class Cat extends Patient {
     }
 
 
-    @Override
-    public void generateNumber() {
-        //
-    }
+
 }

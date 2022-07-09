@@ -31,12 +31,6 @@ public abstract class Patient {
         this.owner = owner;
         this.isVaccinated = isVaccinated;
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
-        try {
-            this.deparasitizationDate = dateFormat.parse(date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
 
 
     }
