@@ -3,14 +3,19 @@ package com.sofka.Menu;
 import com.sofka.Patient.Cat;
 import com.sofka.Patient.Dog;
 import com.sofka.Patient.Owner;
+import com.sofka.Patient.Patient;
+import com.sofka.appointment.Appointment;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
 
      private static Scanner sc = new Scanner(System.in);
 
-    public static void menu() {
+    public static void menu(ArrayList<Appointment> appointments) {
+
+        boolean isActivated = true;
         //Menú
         System.out.println("Sanipet - Veterinary care center");
         System.out.println("");
@@ -25,6 +30,18 @@ public class Menu {
         System.out.println("     4.2 Syrup");
         System.out.println("     4.3 Pet Care");
         System.out.println("5. Exit");
+
+        while(isActivated){
+            int answer = sc.nextInt();
+
+            switch (answer){
+                case 1 : Menu.menu1();
+                break;
+                case 2: Menu.menu2(appointments);
+            }
+
+            Menu.menu(appointments);
+        }
     }
 
     public static int validationAge(){
@@ -35,7 +52,7 @@ public class Menu {
         if (ownerAge < 18) {
             System.out.println("No puede ingresar un propietario menor de 18 años");
             Menu.validationAge();
-        }
+        }s
         return ownerAge;
     }
 
@@ -80,7 +97,8 @@ public class Menu {
                 System.out.println("-");
                 System.out.println("-");
                 System.out.println("");
-                Menu.menu();
+
+
             }else{
                 Cat newCat = new Cat(patientName, breed, own, vaccinated, registerDate);
                 System.out.println(newCat.getName() + " fue inscrito correctamente");
@@ -88,14 +106,26 @@ public class Menu {
                 System.out.println("-");
                 System.out.println("-");
                 System.out.println("");
-                Menu.menu();
+
             }
 
         }
 
-        public static void menu2(){
+        public static void menu2(ArrayList<Appointment> appointments){
             System.out.println("2.1 Crear cita");
             System.out.println("2.3 ");
+
+            double answer = sc.nextDouble();
+
+            if(answer == 2.1){
+
+
+                System.out.println("Ingrese el tipo de cita (Medica - Cirugía - Estética");
+                String appointmentType = sc.nextLine();
+
+                System.out.println("");
+
+            }
         }
     }
 
