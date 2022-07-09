@@ -3,12 +3,18 @@ package com.sofka;
 
 import com.sofka.Employee.Doctor;
 import com.sofka.Employee.Stylist;
+import com.sofka.Menu.Menu;
+import com.sofka.Patient.Cat;
 import com.sofka.Patient.Dog;
 import com.sofka.Patient.Owner;
 
+import javax.sound.midi.Soundbank;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Sanipet {
+
+
     public static void main(String[] args) {
 
         Owner carlos = new Owner("1037671456", "Carlos", "Romero", "3006625803", 22);
@@ -48,20 +54,64 @@ public class Sanipet {
 
         Stylist sty2 = new Stylist(sch3);
 
+        Menu.menu();
 
-        /*
-        Date date = new Date();
+        Scanner sc = new Scanner(System.in);
+        int respuesta = sc.nextInt();
 
-        Date dt = new Date(date.getTime());
+        if (respuesta == 1){
+            System.out.println("-------------------");
+            System.out.println("Datos del propietario \nIntroduzca DNI:" );
+            String dni = sc.nextLine();
 
-        System.out.println("today is; "+ dt);
+            System.out.println("Introduzca nombre: ");
+            String ownerName = sc.nextLine();
 
-        GregorianCalendar cal = new GregorianCalendar();
+            System.out.println("Introduzca surname: ");
+            String surname = sc.nextLine();
 
-        cal.setTime(dt);
+            System.out.println("Introduzca el celular: ");
+            String cellphone = sc.nextLine();
 
-        System.out.println("day of week: "+ cal.get(Calendar.DAY_OF_WEEK));
+            System.out.println("Introduzca la edad: ");
+            int ownerAge = sc.nextInt();
 
-         */
+            if (ownerAge < 18) {
+                System.out.println("No puede ingresar un propietario menor de 18 años");
+            }else{
+                Owner own = new Owner(dni, ownerName, surname, cellphone, ownerAge);
+
+                System.out.println("Ingrese los datos del paciente \n Introduzca nombre:");
+                String patientName = sc.nextLine();
+                System.out.println("Introduzca la raza: ");
+                String breed = sc.nextLine();
+                System.out.println("¿Está vacunado?: true - false");
+                boolean vaccinated = sc.nextBoolean();
+                System.out.println("Ingrese la fecha de registro: dd/mm/yyyy");
+                String registerDate = sc.nextLine();
+                System.out.println("Perro - Gato");
+                String animalType = sc.nextLine();
+                if (animalType.equalsIgnoreCase("Perro")) {
+                    //Without ClinicNumber
+                    Dog newDog = new Dog(patientName,breed, own, vaccinated, registerDate);
+
+                    try {
+                        //Escribir el propietario en el doc propietarios.txt
+
+                        //Escribir el paciente en el doc pacientes.txt
+
+                    }catch (Exception e) {
+                        //Hubo un error
+                    }
+                }
+
+
+
+
+
+            }
+
+        }
+
     }
 }

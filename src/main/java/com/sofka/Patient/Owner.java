@@ -14,4 +14,15 @@ public class Owner {
         this.cellphone = cellphone;
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "dni='" + dni + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", cellphone='" + cellphone + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

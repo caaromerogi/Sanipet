@@ -6,10 +6,22 @@ public class Dog extends Patient{
         super(name, breed, owner, isVaccinated, date);
     }
 
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "clinicHistoryNumber='" + clinicHistoryNumber + '\'' +
+                ", name='" + name + '\'' +
+                ", breed='" + breed + '\'' +
+                ", owner=" + owner +
+                ", isVaccinated=" + isVaccinated +
+                ", date='" + date + '\'' +
+                ", deparasitization=" + deparasitization +
+                '}';
+    }
 
     @Override
     public void generateNumber() {
-        //algo for generation of number
+
         this.clinicHistoryNumber = clinicHistoryNumber;
     }
 }
