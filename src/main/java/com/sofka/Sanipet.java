@@ -3,7 +3,11 @@ package com.sofka;
 
 import com.sofka.Employee.Doctor;
 import com.sofka.Employee.Stylist;
+import com.sofka.Medicine.Medicine;
 import com.sofka.Menu.Menu;
+import com.sofka.Patient.Cat;
+import com.sofka.Patient.Dog;
+import com.sofka.Patient.Owner;
 import com.sofka.appointment.Appointment;
 
 import java.util.ArrayList;
@@ -46,8 +50,12 @@ public class Sanipet {
         Stylist sty2 = new Stylist(schSty);
 
         ArrayList<Appointment> appointments = new ArrayList<>();
+        ArrayList<Dog> dogs = new ArrayList<>();
+        ArrayList<Cat> cats = new ArrayList<>();
+        ArrayList<Medicine> medicines = new ArrayList<>();
+        ArrayList<Owner> owners = new ArrayList<>();
 
-        Menu.menu(appointments);
+        Menu.menu(dogs, cats, owners, appointments, medicines);
 
 
 

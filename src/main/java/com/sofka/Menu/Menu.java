@@ -1,5 +1,6 @@
 package com.sofka.Menu;
 
+import com.sofka.Medicine.Medicine;
 import com.sofka.Patient.Cat;
 import com.sofka.Patient.Dog;
 import com.sofka.Patient.Owner;
@@ -13,7 +14,7 @@ public class Menu {
 
      private static Scanner sc = new Scanner(System.in);
 
-    public static void menu(ArrayList<Appointment> appointments) {
+    public static void menu(ArrayList<Dog> dogs, ArrayList<Cat> cats, ArrayList<Owner> owners , ArrayList<Appointment> appointments, ArrayList<Medicine> medicines) {
 
         boolean isActivated = true;
         //Menú
@@ -35,12 +36,13 @@ public class Menu {
             int answer = sc.nextInt();
 
             switch (answer){
-                case 1 : Menu.menu1();
+                case 1 : Menu.menu1(dogs,cats,owners);
                 break;
-                case 2: Menu.menu2(appointments);
+                case 2: Menu.menu2(dogs, cats, owners, appointments);
+                break;
             }
 
-            Menu.menu(appointments);
+            Menu.menu(dogs, cats, owners, appointments, medicines);
         }
     }
 
@@ -52,11 +54,11 @@ public class Menu {
         if (ownerAge < 18) {
             System.out.println("No puede ingresar un propietario menor de 18 años");
             Menu.validationAge();
-        }s
+        }
         return ownerAge;
     }
 
-    public static void menu1() {
+    public static void menu1(ArrayList<Dog> dogs, ArrayList<Cat> cats, ArrayList<Owner> owners) {
 
         int ownerAge = Menu.validationAge();
 
@@ -78,6 +80,8 @@ public class Menu {
 
             Owner own = new Owner(dni, ownerName, surname, cellphone, ownerAge);
 
+            owners.add(own);
+
             System.out.println("Ingrese los datos del paciente \n Introduzca nombre:");
             String patientName = sc.nextLine();
             System.out.println("Introduzca la raza: ");
@@ -98,6 +102,9 @@ public class Menu {
                 System.out.println("-");
                 System.out.println("");
 
+                dogs.add(newDog);
+                System.out.println(newDog.toString());
+
 
             }else{
                 Cat newCat = new Cat(patientName, breed, own, vaccinated, registerDate);
@@ -107,24 +114,48 @@ public class Menu {
                 System.out.println("-");
                 System.out.println("");
 
+                cats.add(newCat);
+                System.out.println(newCat.toString());
+
             }
 
         }
 
-        public static void menu2(ArrayList<Appointment> appointments){
+        public static void menu2(ArrayList<Dog> dogs, ArrayList<Cat> cats, ArrayList<Owner> owners, ArrayList<Appointment> appointments){
             System.out.println("2.1 Crear cita");
             System.out.println("2.3 ");
 
             double answer = sc.nextDouble();
 
             if(answer == 2.1){
+                System.out.println("Ingrese por favor el Id de su mascota: ");
+                int id = sc.nextInt();
+                Dog useDog;
+                if(dogs.isEmpty() == false) {
+                    for (Dog dog : dogs) {
+                        if (id == dog.getId()) {
+                            useDog = dog;
+                            sc.nextLine();
+                            System.out.println("Ingrese el tipo de cita (Medica - Cirugía - Estética");
+                            String appointmentType = sc.nextLine();
 
+                            System.out.println("Ingrese la fecha en la que desea la cita (dd/mm/yyyy)");
+                            String appointmentDay = sc.nextLine();
 
-                System.out.println("Ingrese el tipo de cita (Medica - Cirugía - Estética");
-                String appointmentType = sc.nextLine();
+                            Appointment appointment = new Appointment(appointmentType, useDog, appointmentDay);
+                            appointments.add(appointment);
+                            System.out.println("Su cita fue creada exitosamente");
+                            System.out.println(appointment.toString());
 
-                System.out.println("");
-
+                        } else {
+                            System.out.println("Por favor, registre a su mascota");
+                            Menu.menu1(dogs, cats, owners);
+                        }
+                    }
+                }else {
+                    System.out.println("Por favor, registre a su mascota");
+                    Menu.menu1(dogs, cats, owners);
+                }
             }
         }
     }

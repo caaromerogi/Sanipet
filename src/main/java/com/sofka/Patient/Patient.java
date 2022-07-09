@@ -23,6 +23,27 @@ public abstract class Patient {
 
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", breed='" + breed + '\'' +
+                ", owner=" + owner +
+                ", isVaccinated=" + isVaccinated +
+                ", date='" + date + '\'' +
+                ", deparasitizationDate=" + deparasitizationDate +
+                '}';
+    }
+
     protected Patient(String name, String breed, Owner owner, boolean isVaccinated, String date) {
         this.id = nextId;
         nextId++;
