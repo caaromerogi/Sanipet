@@ -92,6 +92,11 @@ public class Menu {
             }
 
         }
+
+        public static void menu2(){
+            System.out.println("2.1 Crear cita");
+            System.out.println("2.3 ");
+        }
     }
 
 
