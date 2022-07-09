@@ -2,15 +2,10 @@ package com.sofka;
 
 
 import com.sofka.Employee.Doctor;
+import com.sofka.Employee.Schedule;
 import com.sofka.Employee.Stylist;
 import com.sofka.Menu.Menu;
-import com.sofka.Patient.Cat;
-import com.sofka.Patient.Dog;
-import com.sofka.Patient.Owner;
-import com.sun.xml.internal.ws.message.saaj.SAAJHeader;
 
-import javax.sound.midi.Soundbank;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Sanipet {
