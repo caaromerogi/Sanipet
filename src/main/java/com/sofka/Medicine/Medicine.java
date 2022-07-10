@@ -14,4 +14,15 @@ public class Medicine {
         this.quantity = quantity;
         this.stock = stock;
     }
+
+    @Override
+    public String toString() {
+        return "Medicine{" +
+                "name='" + name + '\'' +
+                ", presentation=" + presentation +
+                ", usage=" + usage +
+                ", quantity=" + quantity +
+                ", stock=" + stock +
+                '}';
+    }
 }

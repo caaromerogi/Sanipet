@@ -12,41 +12,66 @@ import java.util.Scanner;
 
 public class Menu {
 
-     private static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
 
-    public static void menu(ArrayList<Dog> dogs, ArrayList<Cat> cats, ArrayList<Owner> owners , ArrayList<Appointment> appointments, ArrayList<Medicine> medicines) {
+    public static void menu(ArrayList<Patient> pacient, ArrayList<Owner> owners, ArrayList<Appointment> appointments, ArrayList<Medicine> pills, ArrayList<Medicine> syrup, ArrayList<Medicine> petCare, boolean isActivated) {
 
-        boolean isActivated = true;
-        //Menú
-        System.out.println("Sanipet - Veterinary care center");
-        System.out.println("");
-        System.out.println("1. Register patient");
-        System.out.println("2. Appointments");
-        System.out.println("     2.1 By day");
-        System.out.println("     2.2 By Doctor");
-        System.out.println("     2.3 By stylist");
-        System.out.println("3. Billing");
-        System.out.println("4. Medicine stock");
-        System.out.println("     4.1 Pills");
-        System.out.println("     4.2 Syrup");
-        System.out.println("     4.3 Pet Care");
-        System.out.println("5. Exit");
+        while (isActivated) {
+            //Menú
+            System.out.println("Sanipet - Veterinary care center");
+            System.out.println("");
+            System.out.println("1. Register patient");
+            System.out.println("2. Appointments");
+            System.out.println("     2.1 By day");
+            System.out.println("     2.2 By Doctor");
+            System.out.println("     2.3 By stylist");
+            System.out.println("3. Billing");
+            System.out.println("4. Medicine stock");
+            System.out.println("     4.1 Pills");
+            System.out.println("     4.2 Syrup");
+            System.out.println("     4.3 Pet Care");
+            System.out.println("5. Exit");
 
-        while(isActivated){
+
             int answer = sc.nextInt();
+            sc.nextLine();
 
             switch (answer){
-                case 1 : Menu.menu1(dogs,cats,owners);
-                break;
-                case 2: Menu.menu2(dogs, cats, owners, appointments);
-                break;
+                case 1:
+                    Menu.menu1(pacient, owners);
+                    break;
+                case 2:
+                    Menu.menu2(pacient, owners, appointments);
+                    break;
+                case 4:
+                    Menu.menu4(pills, syrup, petCare);
+                    break;
+                case 5:
+                    isActivated = false;
+                    break;
             }
-
-            Menu.menu(dogs, cats, owners, appointments, medicines);
+            Menu.menu(pacient, owners, appointments, pills, syrup, petCare, isActivated);
         }
+
     }
 
-    public static int validationAge(){
+    public static void menu4(ArrayList<Medicine> pills, ArrayList<Medicine> syrup, ArrayList<Medicine> petCare){
+        System.out.println("Por favor ingrese una opción \n 4,1 Pildoras \n 4,2 Jarabe \n 4,3 Pet Care");
+        Double ans4 = sc.nextDouble();
+
+        if (ans4 == 4.1) {
+            System.out.println(pills);
+        }
+        if (ans4 == 4.2){
+            System.out.println(syrup);
+        }
+        if (ans4 == 4.3 ) {
+            System.out.println(petCare);
+        }
+
+    }
+
+    public static int validationAge() {
 
         System.out.println("-------------------\nDatos del propietario ");
         System.out.println("Introduzca la edad: ");
@@ -58,7 +83,7 @@ public class Menu {
         return ownerAge;
     }
 
-    public static void menu1(ArrayList<Dog> dogs, ArrayList<Cat> cats, ArrayList<Owner> owners) {
+    public static void menu1(ArrayList<Patient> pacient, ArrayList<Owner> owners) {
 
         int ownerAge = Menu.validationAge();
 
@@ -77,111 +102,112 @@ public class Menu {
         String cellphone = sc.nextLine();
 
 
+        Owner own = new Owner(dni, ownerName, surname, cellphone, ownerAge);
 
-            Owner own = new Owner(dni, ownerName, surname, cellphone, ownerAge);
+        owners.add(own);
 
-            owners.add(own);
+        System.out.println("Ingrese los datos del paciente \n Introduzca nombre:");
+        String patientName = sc.nextLine();
+        System.out.println("Introduzca la raza: ");
+        String breed = sc.nextLine();
+        System.out.println("¿Está vacunado?: true - false");
+        boolean vaccinated = sc.nextBoolean();
+        sc.nextLine();
+        System.out.println("Ingrese la fecha de desparacitacion: dd/mm/yyyy");
+        String registerDate = sc.nextLine();
 
-            System.out.println("Ingrese los datos del paciente \n Introduzca nombre:");
-            String patientName = sc.nextLine();
-            System.out.println("Introduzca la raza: ");
-            String breed = sc.nextLine();
-            System.out.println("¿Está vacunado?: true - false");
-            boolean vaccinated = sc.nextBoolean();
-            sc.nextLine();
-            System.out.println("Ingrese la fecha de desparacitacion: dd/mm/yyyy");
-            String registerDate = sc.nextLine();
+        System.out.println("Perro - Gato");
+        String animalType = sc.nextLine();
+        if (animalType.equalsIgnoreCase("Perro")) {
+            //Without ClinicNumber
+            Dog newDog = new Dog(patientName, breed, own, vaccinated, registerDate);
+            System.out.println(newDog.getName() + " fue inscrito correctamente");
+            System.out.println("");
+            System.out.println("-");
+            System.out.println("-");
+            System.out.println("");
 
-            System.out.println("Perro - Gato");
-            String animalType = sc.nextLine();
-            if (animalType.equalsIgnoreCase("Perro")) {
-                //Without ClinicNumber
-                Dog newDog = new Dog(patientName, breed, own, vaccinated, registerDate);
-                System.out.println(newDog.getName() + " fue inscrito correctamente");
-                System.out.println("");
-                System.out.println("-");
-                System.out.println("-");
-                System.out.println("");
-
-                dogs.add(newDog);
-                System.out.println(newDog.toString());
+            pacient.add(newDog);
+            System.out.println(newDog.toString());
 
 
-            }else{
-                Cat newCat = new Cat(patientName, breed, own, vaccinated, registerDate);
-                System.out.println(newCat.getName() + " fue inscrito correctamente");
-                System.out.println("");
-                System.out.println("-");
-                System.out.println("-");
-                System.out.println("");
+        } else {
+            Cat newCat = new Cat(patientName, breed, own, vaccinated, registerDate);
+            System.out.println(newCat.getName() + " fue inscrito correctamente");
+            System.out.println("");
+            System.out.println("-");
+            System.out.println("-");
+            System.out.println("");
 
-                cats.add(newCat);
-                System.out.println(newCat.toString());
-
-            }
+            pacient.add(newCat);
+            System.out.println(newCat.toString());
 
         }
 
-        public static void menu2(ArrayList<Dog> dogs, ArrayList<Cat> cats, ArrayList<Owner> owners, ArrayList<Appointment> appointments){
-            System.out.println("2,1 Crear cita");
-            System.out.println("2,2 elimiar cita");
+    }
+    public static void menu2(ArrayList<Patient> pacient, ArrayList<Owner> owners, ArrayList<Appointment> appointments) {
+        System.out.println("2,1 Crear cita");
+        System.out.println("2,2 elimiar cita");
 
-            double answer = sc.nextDouble();
+        double answer = sc.nextDouble();
 
-            if(answer == 2.1){
-                System.out.println("Ingrese por favor el Id de su mascota: ");
-                int id = sc.nextInt();
-                Dog useDog;
-                Cat useCat;
+        if (answer == 2.1) {
+            Appointment idAppointment;
+            System.out.println("Ingrese por favor el Id de su mascota: ");
+            int id = sc.nextInt();
+            sc.nextLine();
 
+            if (pacient.isEmpty() == false) {
+                for (Patient p : pacient) {
+                    if (id == p.getId()) {
+                        Patient pt = p;
 
+                        System.out.println("Ingrese el tipo de cita (Medica - Cirugía - Estética");
+                        String appointmentType = sc.nextLine();
 
-                if(dogs.isEmpty() == true && cats.isEmpty() == true){
+                        System.out.println("Ingrese la fecha en la que desea la cita (dd/mm/yyyy)");
+                        String appointmentDay = sc.nextLine();
 
-                }
-                if(dogs.isEmpty()  == false) {
-                    for (Dog dog : dogs) {
-                        if (id == dog.getId()) {
-                            useDog = dog;
-                            sc.nextLine();
-                            System.out.println("Ingrese el tipo de cita (Medica - Cirugía - Estética");
-                            String appointmentType = sc.nextLine();
-
-                            System.out.println("Ingrese la fecha en la que desea la cita (dd/mm/yyyy)");
-                            String appointmentDay = sc.nextLine();
-
-                            Appointment appointment = new Appointment(appointmentType, useDog, appointmentDay);
-                            appointments.add(appointment);
-                            System.out.println("Su cita fue creada exitosamente");
-                            System.out.println(appointment.toString());
-                            System.out.println(appointments);
-
-                        } else {
-                            System.out.println("Por favor, registre a su mascota");
-                            Menu.menu1(dogs, cats, owners);
-                        }
+                        Appointment appointment = new Appointment(appointmentType, pt, appointmentDay);
+                        appointments.add(appointment);
+                        System.out.println("Su cita fue creada exitosamente");
+                        System.out.println(appointments);
+                    } else {
+                        System.out.println("Por favor, registre al paciente");
+                        Menu.menu1(pacient, owners);
                     }
-                }else {
-                    System.out.println("Por favor, registre a su mascota");
-                    Menu.menu1(dogs, cats, owners);
                 }
-            }else if(answer == 2.2){
+            }else{
 
-                System.out.println("Por favor ingrese el ID de su mascota");
-                int useId = sc.nextInt();
+                System.out.println("Por favor, registre al paciente");
+                Menu.menu1(pacient, owners);}
+        } else if (answer == 2.2) {
 
-                if(appointments.isEmpty() == false) {
-                    for (Appointment appointment : appointments) {
-                        if (useId == appointment.getPatient().getId()) {
-                            appointments.remove(appointment);
-                            System.out.println("su cita fue eliminada exitosamente");
-                            System.out.println(appointments);
-                        } else System.out.println("su mascota no tiene citas asignadas");
+            Appointment idAppointment = null;
+            System.out.println("Por favor ingrese el ID de su mascota");
+            int useId = sc.nextInt();
+
+            
+            if (appointments.isEmpty() == false) {
+                for (Appointment appointment : appointments) {
+                    if (useId == appointment.getPatient().getId()) {
+                        idAppointment = appointment;
+                        System.out.println("su cita fue eliminada exitosamente");
+                        System.out.println(appointments);
+
                     }
-                }else System.out.println("su mascota no tiene citas asignadas");
-            }
+                }
+                appointments.remove(idAppointment);
+                System.out.println(appointments);
+            } else System.out.println("su mascota no tiene citas asignadas");
         }
     }
+
+
+
+
+
+}
 
 
 
