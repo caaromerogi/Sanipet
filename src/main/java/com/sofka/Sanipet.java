@@ -82,6 +82,8 @@ public class Sanipet {
         ArrayList<Medicine> medicines = new ArrayList<>();
         ArrayList<Owner> owners = new ArrayList<>();
 
+
+
         Menu.menu(pacient, owners, appointments, pills, syrup, petCare, isActivated);
 
     }

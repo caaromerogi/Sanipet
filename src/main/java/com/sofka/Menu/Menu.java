@@ -1,10 +1,7 @@
 package com.sofka.Menu;
 
 import com.sofka.Medicine.Medicine;
-import com.sofka.Patient.Cat;
-import com.sofka.Patient.Dog;
-import com.sofka.Patient.Owner;
-import com.sofka.Patient.Patient;
+import com.sofka.Patient.*;
 import com.sofka.appointment.Appointment;
 
 import java.util.ArrayList;
@@ -43,6 +40,9 @@ public class Menu {
                 case 2:
                     Menu.menu2(pacient, owners, appointments);
                     break;
+                case 3:
+                    Menu.menu3();
+                    break;
                 case 4:
                     Menu.menu4(pills, syrup, petCare);
                     break;
@@ -52,6 +52,50 @@ public class Menu {
             }
             Menu.menu(pacient, owners, appointments, pills, syrup, petCare, isActivated);
         }
+
+    }
+
+    public static void menu3(){
+        System.out.println("Elige que procedimiento deseas\n 3,1 cirugia\n 3,2 medica \n 3,3 estetica" );
+        double ans3 = sc.nextDouble();
+
+        int totalPrice = 0;
+
+        if(ans3 == 3.1){
+            totalPrice = Prices.getPriceSurgery();
+        }
+        if(ans3 == 3.2){
+            totalPrice = Prices.getPriceMed();
+        }
+        if(ans3 == 3.3){
+            totalPrice = Prices.getPriceStylist();
+        }
+
+        System.out.println("Elige la medicina que deseas\n 3,1 Dolex\n 3,2 paracetamol \n 3,3 Clorhexin\n 3,4 Bismopet\n 3,5 ivomec \n 3,6 Vaporub\n" );
+        sc.nextLine();
+        ans3 = sc.nextDouble();
+
+        if(ans3 == 3.1){
+            totalPrice += Prices.getPriceDolex();
+        }
+        if(ans3 == 3.2){
+            totalPrice += Prices.getPriceparacetamol();
+        }
+        if(ans3 == 3.3){
+            totalPrice += Prices.getPriceClorhexin();
+        }
+        if(ans3 == 3.4){
+            totalPrice += Prices.getPriceVismopet();
+        }
+        if(ans3 == 3.5){
+            totalPrice += Prices.getPriceivomec();
+        }
+        if(ans3 == 3.6){
+            totalPrice += Prices.getPriceVaporhub();
+        }
+
+        System.out.println("El valor total a pagar es de " + totalPrice +"$ pesos. ");
+
 
     }
 
