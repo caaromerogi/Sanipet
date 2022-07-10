@@ -6,7 +6,6 @@ public class Dog extends Patient{
         super(name, breed, owner, isVaccinated, date);
     }
 
-
     @Override
     public String toString() {
         return "Dog{" +
@@ -16,7 +15,6 @@ public class Dog extends Patient{
                 ", owner=" + owner +
                 ", isVaccinated=" + isVaccinated +
                 ", date='" + date + '\'' +
-                ", deparasitizationDate=" + deparasitizationDate +
                 '}';
     }
 }

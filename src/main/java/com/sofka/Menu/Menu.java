@@ -88,9 +88,10 @@ public class Menu {
             String breed = sc.nextLine();
             System.out.println("¿Está vacunado?: true - false");
             boolean vaccinated = sc.nextBoolean();
-            System.out.println("Ingrese la fecha de registro: dd/mm/yyyy");
-            String registerDate = sc.nextLine();
             sc.nextLine();
+            System.out.println("Ingrese la fecha de desparacitacion: dd/mm/yyyy");
+            String registerDate = sc.nextLine();
+
             System.out.println("Perro - Gato");
             String animalType = sc.nextLine();
             if (animalType.equalsIgnoreCase("Perro")) {
