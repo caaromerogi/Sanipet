@@ -18,6 +18,10 @@ public class Appointment {
                 '}';
     }
 
+    public Patient getPatient() {
+        return patient;
+    }
+
     public Appointment(String type, Patient patient, String date) {
         this.type = type;
         this.patient = patient;

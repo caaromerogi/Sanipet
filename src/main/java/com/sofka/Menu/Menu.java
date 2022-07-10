@@ -123,8 +123,8 @@ public class Menu {
         }
 
         public static void menu2(ArrayList<Dog> dogs, ArrayList<Cat> cats, ArrayList<Owner> owners, ArrayList<Appointment> appointments){
-            System.out.println("2.1 Crear cita");
-            System.out.println("2.3 ");
+            System.out.println("2,1 Crear cita");
+            System.out.println("2,2 elimiar cita");
 
             double answer = sc.nextDouble();
 
@@ -132,7 +132,14 @@ public class Menu {
                 System.out.println("Ingrese por favor el Id de su mascota: ");
                 int id = sc.nextInt();
                 Dog useDog;
-                if(dogs.isEmpty() == false) {
+                Cat useCat;
+
+
+
+                if(dogs.isEmpty() == true && cats.isEmpty() == true){
+
+                }
+                if(dogs.isEmpty()  == false) {
                     for (Dog dog : dogs) {
                         if (id == dog.getId()) {
                             useDog = dog;
@@ -147,6 +154,7 @@ public class Menu {
                             appointments.add(appointment);
                             System.out.println("Su cita fue creada exitosamente");
                             System.out.println(appointment.toString());
+                            System.out.println(appointments);
 
                         } else {
                             System.out.println("Por favor, registre a su mascota");
@@ -157,6 +165,20 @@ public class Menu {
                     System.out.println("Por favor, registre a su mascota");
                     Menu.menu1(dogs, cats, owners);
                 }
+            }else if(answer == 2.2){
+
+                System.out.println("Por favor ingrese el ID de su mascota");
+                int useId = sc.nextInt();
+
+                if(appointments.isEmpty() == false) {
+                    for (Appointment appointment : appointments) {
+                        if (useId == appointment.getPatient().getId()) {
+                            appointments.remove(appointment);
+                            System.out.println("su cita fue eliminada exitosamente");
+                            System.out.println(appointments);
+                        } else System.out.println("su mascota no tiene citas asignadas");
+                    }
+                }else System.out.println("su mascota no tiene citas asignadas");
             }
         }
     }
